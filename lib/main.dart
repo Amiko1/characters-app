@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rpc/screens/home/home.dart';
+import "package:rpc/theme.dart";
 
 void main() {
-  runApp(const MaterialApp(home: Home()));
+  runApp(MaterialApp(home: const Home(), theme: primaryTheme));
 }
