@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rpc/shared/styled_text.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,6 +17,9 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+            StyledText("Characters"),
+            StyledHeading("Charaters list"),
+
             Text("Character List"),
             FilledButton(onPressed: () {}, child: Text("Create Character")),
           ],
