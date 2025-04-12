@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rpc/models/vocation.dart';
+import 'package:rpc/screens/create/vocation_card.dart';
 import 'package:rpc/shared/styled_button.dart';
 import 'package:rpc/shared/styled_text.dart';
 import 'package:rpc/theme.dart';
@@ -46,46 +48,62 @@ class _CreateState extends State<Create> {
       appBar: AppBar(title: StyledTitle("Create chracter"), centerTitle: true),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-        child: Column(
-          children: [
-            Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
-            const Center(child: StyledHeading("Welcome, new player.")),
-            const Center(child: StyledHeading("Create a name & slogan ")),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
+              const Center(child: StyledHeading("Welcome, new player.")),
+              const Center(child: StyledHeading("Create a name & slogan ")),
 
-            const SizedBox(height: 30),
+              const SizedBox(height: 30),
 
-            TextField(
-              controller: _nameController,
-              style: GoogleFonts.kanit(
-                textStyle: Theme.of(context).textTheme.titleMedium,
+              TextField(
+                controller: _nameController,
+                style: GoogleFonts.kanit(
+                  textStyle: Theme.of(context).textTheme.titleMedium,
+                ),
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.person_2),
+                  label: StyledText("Character Name"),
+                ),
+                cursorColor: AppColors.textColor,
               ),
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.person_2),
-                label: StyledText("Character Name"),
+              const SizedBox(height: 30),
+              TextField(
+                controller: _sloganController,
+                style: GoogleFonts.kanit(
+                  textStyle: Theme.of(context).textTheme.titleMedium,
+                ),
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.chat),
+                  label: StyledText("Character slogan"),
+                ),
+                cursorColor: AppColors.textColor,
               ),
-              cursorColor: AppColors.textColor,
-            ),
-            const SizedBox(height: 30),
-            TextField(
-              controller: _sloganController,
-              style: GoogleFonts.kanit(
-                textStyle: Theme.of(context).textTheme.titleMedium,
-              ),
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.chat),
-                label: StyledText("Character slogan"),
-              ),
-              cursorColor: AppColors.textColor,
-            ),
-            const SizedBox(height: 30),
+              const SizedBox(height: 30),
 
-            Center(
-              child: StyledButton(
-                onPressed: handleSubmit,
-                child: StyledHeading("Create Character"),
+              Center(
+                child: StyledButton(
+                  onPressed: handleSubmit,
+                  child: StyledHeading("Create Character"),
+                ),
               ),
-            ),
-          ],
+
+              // select vocation title
+              Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
+              const Center(child: StyledHeading('Choose a Vocation.')),
+              const Center(
+                child: StyledText('This determines your available skills.'),
+              ),
+              const SizedBox(height: 30),
+
+              // vocation cards
+              const VocationCard(vocation: Vocation.junkie),
+              const VocationCard(vocation: Vocation.ninja),
+              const VocationCard(vocation: Vocation.wizard),
+              const VocationCard(vocation: Vocation.raider),
+            ],
+          ),
         ),
       ),
     );
